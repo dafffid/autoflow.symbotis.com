@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutomationImpactAnalyzer - Diagnostic d'Automatisation IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/mobile-responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="js/config.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
+        .task-card { transition: all 0.3s ease; }
+        .task-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .progress-bar { transition: width 0.5s ease; }
+        .chart-container { position: relative; height: 400px; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Aller au contenu principal</a>
+    <!-- Navigation -->
+    <nav class="gradient-bg shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-robot text-white text-2xl mr-3"></i>
+                    <span class="text-white font-bold text-xl">AutomationImpactAnalyzer</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <select id="languageSelect" class="bg-white/20 text-white rounded-md px-3 py-1 border border-white/30">
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                    </select>
+                    <button id="exportBtn" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-md transition-colors">
+                        <i class="fas fa-download mr-2"></i>Exporter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" role="main">
+        <!-- Progress Indicator -->
+        <div class="mb-8">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-gray-700" id="progressText">Étape 1 sur 3</span>
+                <span class="text-sm text-gray-500" id="progressPercentage">0%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="progress-bar bg-blue-600 h-2 rounded-full" id="progressBar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Step 1: Job Information -->
+        <div id="step1" class="step-container">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-briefcase text-blue-600 mr-3"></i>
+                    Informations sur votre poste
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Intitulé du poste *</label>
+                        <input type="text" id="jobTitle" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ex: Analyste Marketing Digital">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Secteur d'activité *</label>
+                        <select id="companySector" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Sélectionnez un secteur</option>
+                            <option value="technologie">Technologie</option>
+                            <option value="finance">Finance</option>
+                            <option value="sante">Santé</option>
+                            <option value="education">Éducation</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="ressources-humaines">Ressources Humaines</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="retail">Commerce de détail</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div class="lg:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Description du poste *</label>
+                        <textarea id="jobDescription" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Décrivez brièvement vos principales responsabilités et missions..."></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Heures de travail par semaine *</label>
+                        <input type="number" id="totalHours" min="1" max="80" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="40">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Entreprise (optionnel)</label>
+                        <input type="text" id="company" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nom de votre entreprise">
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-end">
+                    <button id="nextStep1" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium transition-colors">
+                        Suivant <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Task Details -->
+        <div id="step2" class="step-container hidden">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-tasks text-blue-600 mr-3"></i>
+                    Détail de vos tâches
+                </h2>
+                
+                <div class="mb-6">
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+                        <p class="text-blue-800">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            Listez toutes vos tâches principales avec le temps approximatif consacré à chacune par semaine.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="tasksContainer">
+                    <!-- Tasks will be dynamically added here -->
+                </div>
+
+                <button id="addTask" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md font-medium transition-colors mb-6">
+                    <i class="fas fa-plus mr-2"></i>Ajouter une tâche
+                </button>
+
+                <div class="flex justify-between">
+                    <button id="prevStep2" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-md font-medium transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Précédent
+                    </button>
+                    <button id="analyzeBtn" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md font-medium transition-colors">
+                        <i class="fas fa-magic mr-2"></i>Analyser avec l'IA
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Results -->
+        <div id="step3" class="step-container hidden">
+            <div id="analysisResults">
+                <!-- Results will be displayed here -->
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center z-50">
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <h3 class="text-lg font-semibold text-gray-800">Analyse en cours...</h3>
+                <p class="text-gray-600">Notre IA analyse vos tâches</p>
+            </div>
+        </div>
+
+        <!-- RGPD Consent Modal -->
+        <div id="rgpdModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white p-8 rounded-lg shadow-lg max-w-md mx-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                    Protection des données
+                </h3>
+                <p class="text-gray-600 mb-4">
+                    Nous respectons votre vie privée. Vos données sont anonymisées et utilisées uniquement pour l'analyse. 
+                    Elles ne sont jamais partagées avec des tiers.
+                </p>
+                <div class="flex space-x-3">
+                    <button id="acceptRgpd" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md font-medium transition-colors flex-1">
+                        J'accepte
+                    </button>
+                    <button id="declineRgpd" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md font-medium transition-colors flex-1">
+                        Refuser
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/analysis-engine.js"></script>
+    <script src="js/report-generator.js"></script>
+    <script src="js/export-manager.js"></script>
+    <script src="js/i18n-manager.js"></script>
+</body>
+</html>

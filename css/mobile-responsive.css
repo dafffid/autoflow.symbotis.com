@@ -1,0 +1,560 @@
+/* AutomationImpactAnalyzer - Mobile & Responsive Styles */
+
+/* Base responsive design improvements */
+@media (max-width: 768px) {
+    /* Navigation adjustments */
+    .max-w-7xl {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Progress indicator mobile */
+    .progress-indicator {
+        margin-bottom: 1.5rem;
+    }
+
+    .progress-indicator .flex {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* Step containers mobile layout */
+    .step-container .bg-white {
+        padding: 1.5rem;
+        margin: 0 -0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    /* Form grid adjustments */
+    .grid.grid-cols-1.lg\\:grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Task cards mobile */
+    .task-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .task-card .grid.md\\:grid-cols-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Button spacing */
+    .flex.justify-between {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .flex.justify-between button {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .flex.space-x-3 {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .flex.space-x-3 > * {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+
+    /* Charts mobile optimization */
+    .chart-container {
+        height: 300px !important;
+        margin-bottom: 1rem;
+    }
+
+    .grid.grid-cols-1.lg\\:grid-cols-2.gap-8 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Summary cards mobile */
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div {
+        padding: 1rem;
+    }
+
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 .text-2xl {
+        font-size: 1.25rem;
+    }
+
+    /* Task detail cards mobile */
+    .task-detail-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .task-detail-card .flex.flex-col.lg\\:flex-row {
+        flex-direction: column;
+    }
+
+    .task-detail-card .lg\\:ml-6 {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .task-detail-card .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Filter buttons mobile */
+    .flex.flex-wrap.gap-2 {
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        flex: 1;
+        min-width: calc(50% - 0.25rem);
+        text-align: center;
+    }
+
+    /* Export section mobile */
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4.gap-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .export-btn {
+        padding: 1rem;
+    }
+
+    .export-btn .text-2xl {
+        font-size: 1.25rem;
+    }
+
+    /* Modal mobile adjustments */
+    .fixed.inset-0 .bg-white {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+    }
+
+    /* Navigation mobile */
+    nav .flex.items-center.space-x-4 {
+        gap: 0.5rem;
+    }
+
+    #languageSelect {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    #exportBtn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    /* Even smaller adjustments */
+    .step-container .bg-white {
+        padding: 1rem;
+        margin: 0 -1rem;
+        border-radius: 0;
+    }
+
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div {
+        padding: 0.75rem;
+        text-align: center;
+    }
+
+    .task-card .flex.justify-between {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .task-card button {
+        align-self: flex-end;
+    }
+
+    /* Typography scaling */
+    .text-3xl {
+        font-size: 1.5rem;
+    }
+
+    .text-2xl {
+        font-size: 1.25rem;
+    }
+
+    .text-xl {
+        font-size: 1.125rem;
+    }
+
+    /* Filter buttons single column */
+    .filter-btn {
+        min-width: 100%;
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase tap targets */
+    button, 
+    .filter-btn, 
+    .export-btn,
+    input,
+    textarea,
+    select {
+        min-height: 44px;
+    }
+
+    /* Remove hover effects on touch devices */
+    .task-card:hover {
+        transform: none;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .export-btn:hover {
+        background-color: inherit;
+    }
+
+    /* Improve form control spacing */
+    input, 
+    textarea, 
+    select {
+        padding: 0.75rem;
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+}
+
+/* Landscape phone orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+    .chart-container {
+        height: 250px !important;
+    }
+
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div {
+        padding: 0.5rem;
+    }
+
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 .text-2xl {
+        font-size: 1rem;
+    }
+
+    .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 .text-sm {
+        font-size: 0.625rem;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .task-detail-card .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-container {
+        height: 350px !important;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Crisp text rendering */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Icon sharpening */
+    i.fas, 
+    i.far {
+        -webkit-font-smoothing: auto;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #1f2937;
+        --bg-secondary: #374151;
+        --text-primary: #f9fafb;
+        --text-secondary: #d1d5db;
+        --border-color: #4b5563;
+    }
+
+    .dark-mode-support {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+    }
+
+    .dark-mode-support .bg-white {
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+    }
+
+    .dark-mode-support .text-gray-800,
+    .dark-mode-support .text-gray-700 {
+        color: var(--text-primary);
+    }
+
+    .dark-mode-support .text-gray-600,
+    .dark-mode-support .text-gray-500 {
+        color: var(--text-secondary);
+    }
+
+    .dark-mode-support .border-gray-300,
+    .dark-mode-support .border-gray-200 {
+        border-color: var(--border-color);
+    }
+
+    .dark-mode-support input,
+    .dark-mode-support textarea,
+    .dark-mode-support select {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        border-color: var(--border-color);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .task-card,
+    .progress-bar,
+    .animate-spin {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .task-card:hover {
+        transform: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    /* Hide interactive elements */
+    nav,
+    .filter-btn,
+    .export-btn,
+    button,
+    #loadingOverlay,
+    #rgpdModal {
+        display: none !important;
+    }
+
+    /* Optimize for print */
+    body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+    }
+
+    .bg-white,
+    .bg-gray-50 {
+        background: white !important;
+        box-shadow: none !important;
+    }
+
+    .step-container {
+        page-break-inside: avoid;
+    }
+
+    .task-detail-card {
+        page-break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+
+    /* Chart containers for print */
+    .chart-container {
+        height: 300px;
+        page-break-inside: avoid;
+    }
+
+    /* Color adjustments for print */
+    .text-blue-600,
+    .text-green-600,
+    .text-purple-600 {
+        color: #374151 !important;
+    }
+
+    .bg-blue-50,
+    .bg-green-50,
+    .bg-purple-50 {
+        background: #f9fafb !important;
+    }
+}
+
+/* Custom scrollbars for webkit browsers */
+@media (min-width: 769px) {
+    .step-container::-webkit-scrollbar,
+    .task-detail-card::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .step-container::-webkit-scrollbar-track,
+    .task-detail-card::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 3px;
+    }
+
+    .step-container::-webkit-scrollbar-thumb,
+    .task-detail-card::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+    }
+
+    .step-container::-webkit-scrollbar-thumb:hover,
+    .task-detail-card::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+}
+
+/* Focus improvements for accessibility */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Skip to main content for screen readers */
+.skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #3b82f6;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.skip-to-main:focus {
+    top: 6px;
+}
+
+/* RTL support enhancements */
+.rtl {
+    direction: rtl;
+}
+
+.rtl .flex {
+    direction: rtl;
+}
+
+.rtl .text-left {
+    text-align: right;
+}
+
+.rtl .text-right {
+    text-align: left;
+}
+
+.rtl .ml-3 {
+    margin-left: 0;
+    margin-right: 0.75rem;
+}
+
+.rtl .mr-3 {
+    margin-right: 0;
+    margin-left: 0.75rem;
+}
+
+/* Loading animation improvements */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Smooth transitions for better UX */
+.smooth-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Improved button states */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    background-color: inherit;
+    transform: none;
+}
+
+/* Enhanced form validation styles */
+.error-field {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Loading states for better UX */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: inherit;
+}
+
+/* Notification improvements */
+.notification {
+    min-width: 300px;
+    max-width: 500px;
+    word-wrap: break-word;
+}
+
+@media (max-width: 480px) {
+    .notification {
+        min-width: calc(100vw - 2rem);
+        max-width: calc(100vw - 2rem);
+        left: 1rem;
+        right: 1rem;
+        top: 1rem;
+    }
+}
